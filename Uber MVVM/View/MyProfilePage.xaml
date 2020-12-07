@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Uber_MVVM.View.MyProfilePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Uber_MVVM.View"
+             xmlns:map ="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d" Height="475" Width="723">
+    <Grid Name="grid" Background="#a3d2e6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical">
+            <Border Width="210" Height="210" Margin="0,50,0,20" BorderThickness="10" BorderBrush="#2f0569">
+                <Image Source="/Images/ProfilePicture.jpg" Stretch="Fill"/>
+            </Border>
+            <Button Name="BrowseBtn" IsEnabled="False" Content="Browse" FontSize="20" Width="150" Height="40"/>
+
+            <StackPanel Margin="20,40,0,0">
+                <Label Content="Payment Method" FontFamily="Cooper Black" FontSize="20" Margin="10,0"/>
+                <StackPanel Orientation="Horizontal" >
+                    <Border BorderThickness="2" BorderBrush="Black">
+                        <TextBlock Width="200" FontSize="16" Background="#75879e"/>
+                    </Border>
+                    <Button Name="ChangeBtn" IsEnabled="False" Width="70" Padding="2" Content="Change" Margin="10,0"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <Popup Name="changeCardPopup" PlacementTarget="{Binding ElementName=grid}" Placement="Center" >
+            <StackPanel Height="250" Width="400" Background="#fcefed" Opacity="0.9">
+                <Label Content="Add Card" Margin="5" Foreground="#5b428c" FontFamily="Cooper Black" FontSize="30" HorizontalAlignment="Center"/>
+                <StackPanel Margin="40,10" Orientation="Horizontal">
+                    <TextBox Name="cardNumberTB"  Foreground="#1a40b0" materialDesign:HintAssist.Hint="Card Number" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.7" FontSize="20" Width="250"/>
+                    <materialDesign:PackIcon Kind="Numbers" Foreground="#1a40b0" Height="40" Width="40" Margin="10,0" VerticalAlignment="Bottom"/>
+                </StackPanel>
+                <StackPanel Margin="40,10" Orientation="Horizontal">
+                    <TextBox Name="cardPinTB" Foreground="#1a40b0" materialDesign:HintAssist.Hint="PIN code" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.7" FontSize="20" Width="250"/>
+                    <materialDesign:PackIcon Kind="Security" Foreground="#1a40b0" Height="40" Width="40" Margin="10,0" VerticalAlignment="Bottom"/>
+                </StackPanel>
+                <StackPanel Margin="40,10" Orientation="Horizontal">
+                    <TextBox Name="cardExpireTB" Foreground="#1a40b0" materialDesign:HintAssist.Hint="Expite Date" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.7" FontSize="20" Width="250"/>
+                    <materialDesign:PackIcon Kind="DateRange" Foreground="#1a40b0" Height="40" Width="40" Margin="10,0" VerticalAlignment="Bottom"/>
+                </StackPanel>
+            </StackPanel>
+        </Popup>
+
+        <StackPanel Grid.Column="1" Margin="30,0,0,0" Orientation="Vertical">
+            <StackPanel Margin="20,50,20,10" Orientation="Horizontal">
+                <TextBox Name="NameTB" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" materialDesign:HintAssist.Hint="Name" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.7" FontSize="20" Width="250"/>
+                <materialDesign:PackIcon Kind="Assignment" Foreground="#c4b5f5" Height="40" Width="40" Margin="10,0" VerticalAlignment="Bottom"/>
+            </StackPanel>
+            <StackPanel Margin="20,10" Orientation="Horizontal">
+                <TextBox Name="SurnameTB" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" materialDesign:HintAssist.Hint="Surname" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.7" FontSize="20" Width="250"/>
+                <materialDesign:PackIcon Kind="Assignment" Foreground="#c4b5f5" Height="40" Width="40" Margin="10,0" VerticalAlignment="Bottom"/>
+            </StackPanel>
+            <StackPanel Margin="20,10" Orientation="Horizontal">
+                <TextBox Name="PhoneTB" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" materialDesign:HintAssist.Hint="Phone" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.7" FontSize="20" Width="250"/>
+                <materialDesign:PackIcon Kind="Phone" Foreground="#c4b5f5" Height="40" Width="40" Margin="10,0" VerticalAlignment="Bottom"/>
+            </StackPanel>
+            <StackPanel Margin="20,10" Orientation="Horizontal">
+                <TextBox Name="LoginTB" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" materialDesign:HintAssist.Hint="Login" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.7" FontSize="20" Width="250"/>
+                <materialDesign:PackIcon Kind="Account" Foreground="#c4b5f5" Height="40" Width="40" Margin="10,0" VerticalAlignment="Bottom"/>
+            </StackPanel>
+            <StackPanel Margin="20,10" Orientation="Horizontal">
+                <TextBox Name="PasswordTB" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" materialDesign:HintAssist.Hint="Password" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.FloatingScale="0.7" FontSize="20" Width="250"/>
+                <materialDesign:PackIcon Kind="ForgotPassword" Foreground="#c4b5f5" Height="40" Width="40" Margin="10,0" VerticalAlignment="Bottom"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,40" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="EditBtn" Content="Edit" FontSize="20" Width="100" Height="50" Click="EditBtnClick"/>
+                <Button Name="CancelBtn" Command="{Binding CancelCommand}" IsEnabled="False" Content="Cancel" FontSize="20" Width="100" Height="50" Margin="20,0,0,0" Click="CancelBtnClick"/>
+                <Button Name="SaveBtn" Command="{Binding SaveCommand}" IsEnabled="False" Content="Save" FontSize="20" Width="100" Height="50" Margin="20,0,20,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,63 @@
+﻿<Window x:Class="Uber_MVVM.AutorisationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uber_MVVM"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="Autorisation" Height="520" Width="605.559">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="340"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="2" MouseDown="Grid_MouseDown" Height="50" Background="#3c476b">
+            <Grid Background="#111933" Height="10" VerticalAlignment="Top"/>
+            <StackPanel Height="40" Margin="5,15,5,5" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Label Content="Ibober Application" FontFamily="Rockwell Extra Bold" FontSize="20" Foreground="#e0e8ff" Margin="0,0,100,0" VerticalAlignment="Top"/>
+                <Button Width="30" Height="30" Padding="0" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" Click="MinimizeWindow">
+                    <materialDesign:PackIcon Kind="WindowMinimize" Width="30" Height="30" Foreground="#c1c8db"/>
+                </Button>
+                <Button Width="30" Height="30" Padding="0" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" Click="CloseWindow">
+                    <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="#c1c8db"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Image Grid.Row="1" Grid.Column="0" Source="/Images/crop.jpg" Stretch="Fill"/>
+        <Image Grid.Row="1" Grid.Column="1" Source="/Images/back2.png" Stretch="Fill"/>
+        
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">
+            <Button Content="Log in" FontSize="30" FontFamily="Gill Sans Ultra Bold" Background="Transparent" BorderBrush="Beige" BorderThickness="0,0,0,3" Height="50" Margin="35,40" Click="LoginBtn_Click"/>            
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom">
+            <Button Content="Register" FontSize="30" FontFamily="Gill Sans Ultra Bold" Background="Transparent" BorderBrush="Red" BorderThickness="0,0,0,3" Height="50" Margin="25,40" Click="SignInBtn_Click"/>
+        </StackPanel>
+        <Border Grid.Row="1" Grid.Column="1" BorderThickness="5" BorderBrush="Black">
+            <Grid Name="dynamicGrid">
+                <Border HorizontalAlignment="Center" Margin="0, 50" BorderThickness="5" BorderBrush="#8365b8">
+                    <StackPanel HorizontalAlignment="Center" Margin="0,10">
+                        <Label Content="Welcome" FontSize="30" FontFamily="Goudy Stout" Foreground="#ffb6ad" HorizontalAlignment="Center" />
+                        <Label Content="To" FontSize="30" FontFamily="Goudy Stout" Foreground="#ffb6ad" HorizontalAlignment="Center"/>
+                        <Label Content="Ibober" FontSize="30" FontFamily="Goudy Stout" Foreground="#ffb6ad" materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" FontWeight="Heavy"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+
+</Window>

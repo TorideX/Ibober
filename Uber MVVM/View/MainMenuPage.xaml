@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="Uber_MVVM.View.MainMenuPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Uber_MVVM.View"
+             xmlns:map ="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:gmaps="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Name="MainMenuWindow"
+             mc:Ignorable="d" Height="475" Width="723">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="CarPushpin">
+            <Image Source="/Images/car2.png" Stretch="Fill" VerticalAlignment="Bottom"/>
+        </ControlTemplate>
+
+        <Style x:Key="GreenPushpin" TargetType="map:Pushpin">
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Border Background="Green" Width="21" Height="21" HorizontalAlignment="Left" CornerRadius="50"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RedPushpin" TargetType="map:Pushpin">
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Border Background="Red" Width="21" Height="21" HorizontalAlignment="Left" CornerRadius="50"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Canvas Name="canvas">
+        <Border BorderThickness="5" BorderBrush="Black" Width="{Binding ElementName=MainMenuWindow, Path=Width}" Height="{Binding ElementName=MainMenuWindow, Path=Height}">
+            <map:Map Name="myMap" CredentialsProvider="{Binding ApiKey}" Center="40.409264, 49.867092" ZoomLevel="12" MouseDoubleClick="MapWithPushpins_MouseDoubleClick">
+                <map:Pushpin Name="carPushpin" Visibility="Hidden" Location="{Binding CarLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Template="{StaticResource CarPushpin}"/>
+                <map:MapItemsControl>
+                    <map:MapItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <map:Pushpin/>
+                        </DataTemplate>
+                    </map:MapItemsControl.ItemTemplate>
+                </map:MapItemsControl>
+            </map:Map>
+        </Border>
+
+        <Label Content="Price:" FontSize="30" FontFamily="Showcard Gothic" VerticalAlignment="Center" Canvas.Left="291" Canvas.Top="25"/>
+        <Label Name="priceTB" Content="0" ContentStringFormat="{}{0:0.##} ₼" FontSize="26" FontFamily="Showcard Gothic" VerticalAlignment="Center" Canvas.Left="396" Canvas.Top="29"/>
+
+        <Button Width="120" Height="50" Content="Reset" FontSize="23"
+                FontFamily="Cooper Black" Background="#5322f2" 
+                Foreground="#aebbd6" Opacity="0.8" 
+                Canvas.Left="22" Canvas.Top="24" 
+                Click="ResetBtnClicked"/>
+
+        <Button Name="StartBtn" IsEnabled="False"
+                Command="{Binding StartCommand}"
+                Content="Start Trip" FontSize="30" FontFamily="Cooper Black" 
+                Width="200" Height="50" BorderBrush="#111973" 
+                BorderThickness="2" Foreground="#111973" 
+                Click="StartBtn_Click" Background="Transparent"
+                Canvas.Left="261" Canvas.Top="403"/>
+
+        <Popup Name="ProgressPopup" IsOpen="{Binding ShowPopup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlacementTarget="{Binding ElementName=canvas}" Placement="Center" >
+            <Canvas Height="250" Width="400" Background="#4f1180">
+                <Label Content="How was your Trip?" FontSize="25" Foreground="White" FontFamily="Gill Sans Ultra Bold" Canvas.Left="44" Canvas.Top="10"/>
+                <TextBox Name="reviewTB" Width="300" Height="112" Background="#e4c5fc" AcceptsReturn="True" AllowDrop="True" TextWrapping="Wrap" VerticalContentAlignment="Top" Canvas.Left="56" Canvas.Top="70"/>
+                <Button Content="Send" Height="40" Width="100" Foreground="Black" Background="#239e48" Canvas.Left="214" Canvas.Top="200" Click="PopupSendBtnClick"/>
+                <Button Content="Cancel" Height="40" Width="100" Foreground="Black" Background="#9e7d23" Canvas.Left="109" Canvas.Top="200" Click="PopupCancelBtnClick"/>
+            </Canvas>
+        </Popup>
+        <Popup Name="LoadingPopup" IsOpen="False" PlacementTarget="{Binding ElementName=canvas}" Placement="Center">
+            <Grid Width="400" Height="30">
+                <ProgressBar Name="progressBar" Height="30" Value="10" Background="Wheat" Foreground="Green"/>
+            </Grid>
+        </Popup>
+    </Canvas>
+</UserControl>

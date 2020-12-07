@@ -1,0 +1,72 @@
+﻿<Window x:Class="Uber_MVVM.View.IboberView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uber_MVVM.View"
+        xmlns:map ="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"        
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="IboberWindow" Height="529.685" Width="782.452">
+    <Grid>
+        <StackPanel>
+            <Grid MouseDown="Grid_MouseDown" Height="60" Background="#8aaaff">
+                <Grid Background="#0a37a8" Height="10" VerticalAlignment="Top"/>
+                <StackPanel Height="40" Margin="5,15,5,5" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Label Content="Ibober Application" FontFamily="Gill Sans Ultra Bold Condensed" FontSize="20" Foreground="#0d1f4f" Margin="0,0,150,0" VerticalAlignment="Center"/>
+                    <Button Width="30" Height="30" Padding="0" Background="Transparent" BorderThickness="0" Margin="5" Click="MinimizeWindow">
+                        <materialDesign:PackIcon Kind="WindowMinimize" Width="30" Height="30" Foreground="Black"/>
+                    </Button>                    
+                    <Button Width="30" Height="30" Padding="0" Background="Transparent" BorderThickness="0" Margin="5" Click="CloseWindow">
+                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="Black"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Name="menuGrid" Grid.Column="0" Width="60" Background="#22232e">
+                <Button Width="50" Height="50" Padding="0" Margin="5" Background="#383947" VerticalAlignment="Top" HorizontalAlignment="Right" Click="MenuButtonClick">
+                    <materialDesign:PackIcon Kind="Menu" Width="40" Height="40"/>
+                </Button>
+                <ListView Name="MenuListView" HorizontalAlignment="Center" Margin="0,150" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListView_SelectionChanged">
+                    <ListViewItem Height="60" Margin="0,2">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Home" Width="40" Height="40" Foreground="Wheat" VerticalAlignment="Center"/>
+                            <Label Content="Main Menu" Margin="10,0" FontFamily="Cooper Black" FontSize="20" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" Margin="0,2">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="History" Width="40" Height="40" Foreground="Wheat" VerticalAlignment="Center"/>
+                            <Label Content="Order History" Margin="10,0" FontFamily="Cooper Black" FontSize="20" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" Margin="0,2">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Account" Width="40" Height="40" Foreground="Wheat" VerticalAlignment="Center"/>
+                            <Label Content="My Profile" Margin="10,0" FontFamily="Cooper Black" FontSize="20" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </Grid>
+
+            <Grid Name="dynamicGrid" Grid.Column="1" Margin="0,55,0,0">
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
